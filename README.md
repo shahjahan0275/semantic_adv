@@ -182,24 +182,23 @@ True
 ```
 
 
-#CNN-F_Improved
-# Training_Command
+## CNN-F_Improved
+### Training_Command
 python train_dctstats.py --name DCT_ResNet50_LM12 \
 --blur_prob 0.1 --blur_sig 0.0,3.0 \
 --jpg_prob 0.1 --jpg_method cv2,pil --jpg_qual 30,100 \
 --dataroot /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/CNN-F/mydataset \
 --classes general --gpu_ids 0 --modeltype 0.1 --batch_size 64
 
-# Inference_Command
+### Inference_Command
 python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/CLIPResNet/ --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/CNN-F/checkpoints/DCT_ResNet50_LM12/model_epoch_latest.pth
 
 python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/EfficientNet/ --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/CNN-F/checkpoints/DCT_ResNet50_LM12/model_epoch_latest.pth
 
 python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/ --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/CNN-F/checkpoints/DCT_ResNet50_LM12/model_epoch_latest.pth
 
-##################################################################
-#Resynthesis_Improved
-# Training_Command in the cluster environment with "sbatch". You can modify the command to use as per your hardware requirement.
+## Resynthesis_Improved
+Training_Command in the cluster environment with "sbatch". You can modify the command to use as per your hardware requirement.
 ####################  Resynthesis_styleclip.sh  DCT Fourth-Order Statistics #############################
 #!/bin/bash
 #SBATCH --job-name=Resynthesis_styleclip_DCT        # Job name
@@ -241,7 +240,7 @@ DATA_ROOT_POS='/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defense
 DATA_ROOT_NEG='/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset/train/fake'
 
 
-# Run training
+### Run training
 python train.py -a resnet50 \
   --gpu ${GPU_ID} \
   --batch-size ${BATCH_SIZE} \
@@ -263,19 +262,17 @@ python train.py -a resnet50 \
   --idx-stages 5 \
   --mode-sr denoising
 
-##########################################
 
-# Inference_Command
+### Inference_Command
 python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/CLIPResNet/0_real" --data-root-neg "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/CLIPResNet/1_fake" --input-channel 512 --resume "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100.pth.tar" --sr-weights-file "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100_sr.pth.tar" --save_path "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/results" --no_dilation --sr-scale 4 --sr-num-features 64 --sr-growth-rate 64 --sr-num-blocks 16 --sr-num-layers 8 --idx-stages 5
 
 python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/EfficientNet/0_real" --data-root-neg "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/EfficientNet/1_fake" --input-channel 512 --resume "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100.pth.tar" --sr-weights-file "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100_sr.pth.tar" --save_path "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/results" --no_dilation --sr-scale 4 --sr-num-features 64 --sr-growth-rate 64 --sr-num-blocks 16 --sr-num-layers 8 --idx-stages 5
 
 python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/0_real" --data-root-neg "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/1_fake" --input-channel 512 --resume "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100.pth.tar" --sr-weights-file "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100_sr.pth.tar" --save_path "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/results" --no_dilation --sr-scale 4 --sr-num-features 64 --sr-growth-rate 64 --sr-num-blocks 16 --sr-num-layers 8 --idx-stages 5
 
-##############################################################
-#DCT_Improved
-#For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or 4 training /test images as an example or place holder.
-# Training_Command
+## DCT_Improved
+For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or 4 training /test images as an example or place holder.
+### Training_Command
 python train_exp_DS_GI_Frequency_FO_batch.py \
   --train_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset/train \
   --val_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset/val \
@@ -290,25 +287,23 @@ python train_exp_DS_GI_Frequency_FO_batch.py \
   --save_dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP
 
 
-# Inference_Command
+### Inference_Command
 python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/CLIPResNet/1_fake --real_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/MidStyleCLIPjourney_train/StyleCLIP_dataset/test/0_real --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP/best_model_MjStyle.pth --meanstd_dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP --out_csv /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/result/CLIPResNet_StyleCLIP_TO.csv
 
 python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/EfficientNet/1_fake --real_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/MidStyleCLIPjourney_train/StyleCLIP_dataset/test/0_real --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP/best_model_MjStyle.pth --meanstd_dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP --out_csv /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/result/EfficientNet_StyleCLIP_TO.csv
 
 python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/1_fake --real_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/MidStyleCLIPjourney_train/StyleCLIP_dataset/test/0_real --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP/best_model_MjStyle.pth --meanstd_dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP --out_csv /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/result/ViT_StyleCLIP_TO.csv
 
-##############################################################
-#DE-FAKE_Improved
-# Training_Command
+## DE-FAKE_Improved
+### Training_Command
 python train_FOS_3BDCT_patch_text.py --epoch 200 --lr 5e-5 --inputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/checkpoints/clip_linear.pt --inputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/checkpoints/finetune_clip.pt --outputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_linear_finetuned.pt --outputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_clip_finetuned.pt
 
-# Inference_Command
+### Inference_Command
 python test_FOS_3BDCT_patch_text.py --outputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_clip_finetuned.pt --outputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_linear_finetuned.pt
 
-##############################################################
-#Patch-Forensics_Improved
-#For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or four training /test images as an example or place holder.
-# Training_Command
+## Patch-Forensics_Improved
+For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or four training /test images as an example or place holder.
+### Training_Command
 
 python3 train_V1.py checkpoints/gp2-faceforensics-df_seed0_xception_block2_constant_p20_V1/opt.yml \
     --real_im_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/real \
@@ -321,14 +316,14 @@ python3 train_V1.py checkpoints/gp2-faceforensics-df_seed0_xception_block2_const
     --patch_size 16 \
     --patch_shuffle_prob 0.5
     
-# Inference_Command
+### Inference_Command
 python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset_name CLIPResNet --real_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/real/test --fake_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/fake/test --train_config checkpoints/gp2-faceforensics-df_seed0_xception_block2_constant_p20_V1/opt.yml
 
 python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset_name EfficientNet --real_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/real/test --fake_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/fake/test --train_config checkpoints/gp2-faceforensics-df_seed0_xception_block2_constant_p20_V1/opt.yml
 
 python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset_name ViT --real_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/real/test --fake_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/fake/test --train_config checkpoints/gp2-faceforensics-df_seed0_xception_block2_constant_p20_V1/opt.yml
 
-References
+## References
 
 [1] Yang, Yongqi, et al.
     "D3: Scaling Up Deepfake Detection by Learning from Discrepancy."
