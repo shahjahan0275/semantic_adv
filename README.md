@@ -5,7 +5,7 @@ This repository contains the official PyTorch implementation of the Robustness o
  ```
 @article{shahjahan2026Deepfake,
    title={On Improving Robustness of Deepfake  Image Detectors},
-   author={Shahjahan, Abu Taib Mohammed and Hamza, A Ben},
+   author={Shahjahan, Abu Taib Mohammed and Mannan,Mohammad and Hamza, A Ben and Youssef, Amr },
    conference={USENIX Security ‘26},
    year={2026},      
  }
