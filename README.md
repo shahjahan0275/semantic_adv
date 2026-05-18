@@ -1,3 +1,15 @@
+# [On Improving Robustness of Deepfake  Image Detectors] [USENIX Security ‘26]
+
+This repository contains the official PyTorch implementation of the Robustness of Deepfake  Image Detectors authored by Abu Taib Mohammed Shahjahan, Mohammad Mannan, A. Ben Hamza and Amr Youssef. If you discover our code to be valuable for your research, kindly consider including the following citation:
+
+ ```
+@article{shahjahan2026Deepfake,
+   title={On Improving Robustness of Deepfake  Image Detectors},
+   author={Shahjahan, Abu Taib Mohammed and Hamza, A Ben},
+   conference={USENIX Security ‘26},
+   year={2026},      
+ }
+```
 ### Important Note About File Paths
 
 The codebase was developed and evaluated across multiple HPC clusters and local machines. Therefore, some dataset paths, checkpoint paths, and output directories in the source code may still contain the original absolute paths used during our experiments.
@@ -99,7 +111,6 @@ python train_3branch_FOS.py \
 # Inference_Command
 python validate_for_robustness_spd.py
 
-######################################################################
 ## Reproducing Table 4 Results
 
 The detectors located inside the defenses/ folder are used to reproduce the results reported in Table 4 of the paper.
