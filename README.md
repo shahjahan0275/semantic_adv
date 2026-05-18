@@ -18,6 +18,13 @@ Please update these paths according to your local system or computing environmen
 
 
 ## D3_Improved
+### Network Architecture
+
+<div align="center">
+  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/D3.png" alt="Network_Architechture" width="600" height="200">
+</div>
+
+The PyTorch implementation for Improved D3
 
 #### Reproducing Results
 ##### Reproducing Table 3
