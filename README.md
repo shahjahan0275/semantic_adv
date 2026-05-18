@@ -215,14 +215,14 @@ Training_Command in the cluster environment with "sbatch". You can modify the co
 
 #SBATCH --output=/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/logs/Resynthesis_styleclip_DCTFO%j.log   # STDOUT/STDERR
 
-# Load conda environment
+#Load conda environment
 source /encs/pkg/anaconda3-2023.03/root/etc/profile.d/conda.sh
 conda activate /speed-scratch/a_shahj/defake
 
-# Make sure logs directory exists
+#Make sure logs directory exists
 mkdir -p /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/logs
 
-# Training parameters
+#Training parameters
 GPU_ID=0  # GPU index (SLURM will assign, but you can override)
 INIT_LR=1e-2
 EPOCH=100
