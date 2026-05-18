@@ -17,10 +17,10 @@ The codebase was developed and evaluated across multiple HPC clusters and local 
 Please update these paths according to your local system or computing environment before running the code.
 
 
-# D3_Improved
+## D3_Improved
 
-Reproducing Results
-D3_Improved Detector (Table 3)
+#### Reproducing Results
+##### Reproducing Table 3
 
 To reproduce the results reported in Table 3 of the paper using the proposed D3_Improved detector:
 
@@ -36,13 +36,13 @@ The datasets from Abdullah et al. (2024),
 
 as described in the paper.
 
-Reproducing Table 2
+##### Reproducing Table 2
 
 To reproduce the results in Table 2 using all datasets from Abdullah et al. (2024), please follow the instructions from the original D3 repository:
 
 D3: Scaling Up Deepfake Detection by Learning from Discrepancy (CVPR 2025)
 
-Reproducing Table 1
+##### Reproducing Table 1
 
 To reproduce the results in Table 1 using all the dataset from Abdullah et al. (2024) please follow the setup and instructions provided in the corresponding repositories of the respective detectors evaluated in our paper.
 
