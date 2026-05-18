@@ -1,0 +1,108 @@
+/forcolab/home/ashahj/D3/networks/trainer_FOS.py:89: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(opt.resume_path, map_location="cpu")
+Pre-downloading CLIP ViT-L/14 to scratch...
+CLIP ViT-L/14 pre-download complete.
+----------------- Options ---------------
+                     arch: CLIP:ViT-L/14                 	[default: res50]
+               batch_size: 32                            	[default: 256]
+                    beta1: 0.9                           
+                blur_prob: 0.5                           
+                 blur_sig: 0.0,3.0                       
+          checkpoints_dir: /forcolab/home/ashahj/D3/ckpt 	[default: ./checkpoints]
+                class_bal: False                         
+                 cropSize: 224                           
+                 data_aug: False                         
+               data_label: train                         
+                data_mode: ours                          
+          earlystop_epoch: 5                             
+              epoch_count: 1                             
+           fake_list_path: None                          
+             fix_backbone: True                          	[default: False]
+                  gpu_ids: 0                             
+                head_type: attention                     
+                init_gain: 0.02                          
+                init_type: normal                        
+                  isTrain: True                          	[default: None]
+               jpg_method: cv2,pil                       
+                 jpg_prob: 0.5                           
+                 jpg_qual: 30,100                        
+               last_epoch: -1                            
+                 loadSize: 256                           
+         load_whole_model: False                         
+                loss_freq: 400                           
+                       lr: 0.0001                        
+                     mode: binary                        
+                     name: train_d3B_FO4_DCT_StyleCLIP_genimage_ReRUN	[default: experiment_name]
+                new_optim: False                         
+                    niter: 100                           
+               no_augment: False                         
+                  no_flip: False                         
+              num_threads: 4                             
+                    optim: adam                          
+           original_times: 1                             
+               patch_base: False                         
+               patch_size: 14                            
+           real_list_path: None                          
+           resize_or_crop: scale_and_crop                
+              resume_path: /forcolab/home/ashahj/D3/ckpt/train_d3B_FO4_DCT_StyleCLIP_genimage_ReRUN/model_epoch_28.pth	[default: None]
+                rz_interp: bilinear                      
+          save_epoch_freq: 1                             
+                    scale: 1.0                           
+           serial_batches: False                         
+                  shuffle: True                          	[default: False]
+            shuffle_times: 1                             
+                   suffix:                               
+            train_samples: 36000                         	[default: -1]
+              train_split: train                         
+                val_split: val                           
+       wang2020_data_path: None                          
+             weight_decay: 0.0                           
+----------------- End -------------------
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 592000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 16000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 2000 samples
+using CLIPModelShuffleAttentionPenultimateLayer
+Resuming from checkpoint: /forcolab/home/ashahj/D3/ckpt/train_d3B_FO4_DCT_StyleCLIP_genimage_ReRUN/model_epoch_28.pth
+✅ Model and optimizer state restored.
+Resuming from epoch 1073000
+[Trainer] Using CLIP output dim = 1024
+Resuming training from epoch 28
+Length of data loader: 18500
+  0%|          | 0/18500 [00:00<?, ?it/s]/forcolab/home/ashahj/D3/util/model_need_tools.py:154: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  saved_checkpoint = torch.load(file_name)
+  0%|          | 0/18500 [01:58<?, ?it/s]
+Traceback (most recent call last):
+  File "train_3branch_FOS.py", line 177, in <module>
+    model.optimize_parameters()
+  File "/forcolab/home/ashahj/D3/networks/trainer_FOS.py", line 242, in optimize_parameters
+    self.optimizer.step()
+  File "/forcolab/home/ashahj/miniconda3/envs/D3/lib/python3.8/site-packages/torch/optim/optimizer.py", line 484, in wrapper
+    out = func(*args, **kwargs)
+  File "/forcolab/home/ashahj/miniconda3/envs/D3/lib/python3.8/site-packages/torch/optim/optimizer.py", line 89, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/forcolab/home/ashahj/miniconda3/envs/D3/lib/python3.8/site-packages/torch/optim/adamw.py", line 227, in step
+    adamw(
+  File "/forcolab/home/ashahj/miniconda3/envs/D3/lib/python3.8/site-packages/torch/optim/optimizer.py", line 161, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/forcolab/home/ashahj/miniconda3/envs/D3/lib/python3.8/site-packages/torch/optim/adamw.py", line 767, in adamw
+    func(
+  File "/forcolab/home/ashahj/miniconda3/envs/D3/lib/python3.8/site-packages/torch/optim/adamw.py", line 529, in _multi_tensor_adamw
+    torch._foreach_lerp_(device_exp_avgs, device_grads, 1 - beta1)
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!

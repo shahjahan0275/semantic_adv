@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/forcolab/home/ashahj/D3/train_3branch_FOS_F.py", line 12, in <module>
+    import clip
+ModuleNotFoundError: No module named 'clip'

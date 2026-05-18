@@ -1,0 +1,6 @@
+Starting training at Mon Dec  8 18:29:13 UTC 2025
+Traceback (most recent call last):
+  File "/forcolab/home/ashahj/D3/train_3branch_FOS.py", line 9, in <module>
+    from tensorboardX import SummaryWriter
+ModuleNotFoundError: No module named 'tensorboardX'
+Training finished at Mon Dec  8 18:29:14 UTC 2025

@@ -1,0 +1,84 @@
+Pre-downloading CLIP ViT-L/14 to scratch...
+CLIP ViT-L/14 pre-download complete.
+----------------- Options ---------------
+                     arch: CLIP:ViT-L/14                 	[default: res50]
+               batch_size: 32                            	[default: 256]
+                    beta1: 0.9                           
+                blur_prob: 0.5                           
+                 blur_sig: 0.0,3.0                       
+          checkpoints_dir: /forcolab/home/ashahj/D3/ckpt 	[default: ./checkpoints]
+                class_bal: False                         
+                 cropSize: 224                           
+                 data_aug: False                         
+               data_label: train                         
+                data_mode: ours                          
+          earlystop_epoch: 5                             
+              epoch_count: 1                             
+           fake_list_path: None                          
+             fix_backbone: True                          	[default: False]
+                  gpu_ids: 0                             
+                head_type: attention                     
+                init_gain: 0.02                          
+                init_type: normal                        
+                  isTrain: True                          	[default: None]
+               jpg_method: cv2,pil                       
+                 jpg_prob: 0.5                           
+                 jpg_qual: 30,100                        
+               last_epoch: -1                            
+                 loadSize: 256                           
+         load_whole_model: False                         
+                loss_freq: 400                           
+                       lr: 0.0001                        
+                     mode: binary                        
+                     name: train_d3B_FO4_DCT_StyleCLIP_genimage_ReRUN	[default: experiment_name]
+                new_optim: False                         
+                    niter: 100                           
+               no_augment: False                         
+                  no_flip: False                         
+              num_threads: 4                             
+                    optim: adam                          
+           original_times: 1                             
+               patch_base: False                         
+               patch_size: 14                            
+           real_list_path: None                          
+           resize_or_crop: scale_and_crop                
+              resume_path: None                          
+                rz_interp: bilinear                      
+          save_epoch_freq: 1                             
+                    scale: 1.0                           
+           serial_batches: False                         
+                  shuffle: True                          	[default: False]
+            shuffle_times: 1                             
+                   suffix:                               
+            train_samples: 54000                         	[default: -1]
+              train_split: train                         
+                val_split: val                           
+       wang2020_data_path: None                          
+             weight_decay: 0.0                           
+----------------- End -------------------
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 880000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 16000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 12000 samples
+mean and std stats are from:  clip
+[Sanity Check] Dataset size: 2000 samples
+using CLIPModelShuffleAttentionPenultimateLayer
+[Trainer] Using CLIP output dim = 1024
+Length of data loader: 27500
+  0%|          | 0/27500 [00:00<?, ?it/s]/forcolab/home/ashahj/D3/util/model_need_tools.py:154: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  saved_checkpoint = torch.load(file_name)
+  0%|          | 1/27500 [01:43<790:53:07, 103.54s/it]  0%|          | 2/27500 [01:48<348:09:33, 45.58s/it]   0%|          | 3/27500 [01:53<208:00:27, 27.23s/it]  0%|          | 4/27500 [01:59<142:12:41, 18.62s/it]  0%|          | 5/27500 [02:04<105:52:45, 13.86s/it]  0%|          | 6/27500 [02:10<83:57:25, 10.99s/it]   0%|          | 7/27500 [02:15<70:05:26,  9.18s/it]  0%|          | 8/27500 [02:21<61:00:11,  7.99s/it]  0%|          | 9/27500 [02:26<54:56:25,  7.19s/it]  0%|          | 10/27500 [02:31<50:48:59,  6.65s/it]  0%|          | 11/27500 [02:37<48:02:04,  6.29s/it]  0%|          | 12/27500 [02:42<46:07:44,  6.04s/it]  0%|          | 13/27500 [02:48<44:48:52,  5.87s/it]  0%|          | 14/27500 [02:53<43:55:28,  5.75s/it]  0%|          | 15/27500 [02:59<43:18:01,  5.67s/it]  0%|          | 16/27500 [03:04<42:50:52,  5.61s/it]  0%|          | 17/27500 [03:10<42:32:28,  5.57s/it]  0%|          | 18/27500 [03:15<42:19:40,  5.54s/it]  0%|          | 19/27500 [03:21<42:11:37,  5.53s/it]

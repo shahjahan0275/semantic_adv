@@ -1,0 +1,237 @@
+import os
+import torch
+import torch_dct as dct
+import argparse
+import numpy as np
+from pathlib import Path
+from PIL import Image, UnidentifiedImageError
+from tqdm import tqdm
+import torchvision.transforms as transforms
+import torch.nn as nn
+from sklearn.metrics import (
+    accuracy_score, recall_score, precision_score,
+    f1_score, average_precision_score, confusion_matrix
+)
+
+
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+# -----------------------------
+# SAME Logistic Regression used in training
+# -----------------------------
+class LogisticRegression(nn.Module):
+    def __init__(self, input_size, num_classes=2):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_size, 512),
+            nn.ReLU(),
+            #nn.GELU(),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            #nn.GELU(),
+            nn.Linear(256, num_classes)
+        )
+
+    def forward(self, x):
+        return self.net(x)
+
+
+# ------------------------------------------
+# SAME EXACT spectral_features() as TRAINING
+# ------------------------------------------
+def spectral_features(img_batch, patch=32):
+    if img_batch.dim() == 3:
+        img_batch = img_batch.unsqueeze(1)
+    elif img_batch.shape[1] == 3:
+        r, g, b = img_batch[:, 0], img_batch[:, 1], img_batch[:, 2]
+        img_batch = (0.299*r + 0.587*g + 0.114*b).unsqueeze(1)
+
+    img_batch = img_batch.double()
+    B, C, H, W = img_batch.shape
+    device = img_batch.device
+
+    with torch.no_grad():
+        F = dct.dct_2d(img_batch, norm="ortho").squeeze(1)
+        F = F.abs()
+
+    ph = pw = patch
+    patches = F.unfold(1, ph, ph).unfold(2, pw, pw)
+    B, Hp, Wp, ph, pw = patches.shape
+    N = Hp * Wp
+    patches = patches.reshape(B, N, ph, pw)
+
+    yy, xx = torch.meshgrid(
+        torch.arange(ph, device=device),
+        torch.arange(pw, device=device),
+        indexing="ij"
+    )
+
+    cy, cx = (ph - 1) / 2, (pw - 1) / 2
+    dist = torch.sqrt((yy-cy)**2 + (xx-cx)**2)
+    dist = dist / dist.max()
+
+    low_mask  = (dist <= 0.25).double()[None,None,:,:]
+    mid_mask  = ((dist > 0.25) & (dist <= 0.65)).double()[None,None,:,:]
+    high_mask = (dist > 0.65).double()[None,None,:,:]
+
+    eps = 1e-6
+
+    def stats(mask):
+        X = patches * mask
+        s1 = X.sum(dim=[2,3]) + eps
+        cnt = mask.sum()
+
+        mean = s1 / cnt
+        xc = X - mean[:, :, None, None]
+        var = (xc*xc).sum(dim=[2,3]) / cnt
+        skew = ((xc**3).sum(dim=[2,3]) / cnt) / (var.sqrt()**3 + eps)
+
+        return torch.stack([mean, var, skew], dim=-1)
+
+    low_s  = stats(low_mask)
+    mid_s  = stats(mid_mask)
+    high_s = stats(high_mask)
+
+    feat = torch.cat([low_s, mid_s, high_s], dim=-1)
+    feat = feat.reshape(B, -1).float()
+
+    return feat
+
+
+# -----------------------------------------
+# Load and crop images SAFE (same as train)
+# -----------------------------------------
+def load_img(path, input_size=1024):
+    try:
+        img = Image.open(path)
+        img = img.convert("L")
+        img = transforms.CenterCrop((input_size, input_size))(img)
+        img = transforms.ToTensor()(img)
+        img = (img * 2.0) - 1.0
+        return img
+    except Exception:
+        return None
+
+
+# -----------------------
+# Main TESTING function
+# -----------------------
+def run_test(args):
+
+    model_path = args.model_path
+    mean_path  = args.meanstd_dir + "/means.pt"
+    std_path   = args.meanstd_dir + "/stds.pt"
+
+    print("\nLoading trained model...")
+    means = torch.load(mean_path, map_location=DEVICE)
+    stds  = torch.load(std_path,  map_location=DEVICE)
+
+    input_size = means.shape[1]
+    model = LogisticRegression(input_size=input_size).to(DEVICE)
+    model.load_state_dict(torch.load(model_path, map_location=DEVICE))
+    model.eval()
+
+    print("Input feature dimension =", input_size)
+
+    real_dir = Path(args.real_root)
+    fake_dir = Path(args.fake_root)
+
+    real_paths = sorted([str(real_dir / f) for f in os.listdir(real_dir)])
+    fake_paths = sorted([str(fake_dir / f) for f in os.listdir(fake_dir)])
+
+    all_paths = real_paths + fake_paths
+    all_labels = [0]*len(real_paths) + [1]*len(fake_paths)
+
+    preds = []
+    y_true = []
+    y_pred = []
+    y_scores = []
+
+    print("\nProcessing test images...")
+    for path, gt in tqdm(list(zip(all_paths, all_labels))):
+
+        img = load_img(path, input_size=args.input_size)
+        if img is None:
+            preds.append([path, gt, -1])
+            continue
+
+        img = img.unsqueeze(0).to(DEVICE)
+
+        feat = spectral_features(img)
+        feat = (feat - means) / stds
+
+        with torch.no_grad():
+            out = model(feat)
+            prob = torch.softmax(out, dim=1)[0,1].item()
+            pred = torch.argmax(out, dim=1).item()
+
+        preds.append([path, gt, pred])
+
+        y_true.append(gt)
+        y_pred.append(pred)
+        y_scores.append(prob)
+
+    # ------------------------------
+    # Compute Metrics
+    # ------------------------------
+    ACC = accuracy_score(y_true, y_pred)
+    REC = recall_score(y_true, y_pred)
+    PRE = precision_score(y_true, y_pred)
+    F1  = f1_score(y_true, y_pred)
+    AP  = average_precision_score(y_true, y_scores)
+    CM  = confusion_matrix(y_true, y_pred)
+
+    print("\n======================================")
+    print(" TEST METRICS")
+    print("======================================")
+    print(f"Accuracy  : {ACC:.4f}")
+    print(f"Recall    : {REC:.4f}")
+    print(f"Precision : {PRE:.4f}")
+    print(f"F1 score  : {F1:.4f}")
+    print(f"AP        : {AP:.4f}")
+    print("\nConfusion Matrix:")
+    print(CM)
+    print("======================================\n")
+
+    # ------------------------------
+    # Write CSV
+    # ------------------------------
+    import csv
+    csv_path = args.out_csv
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["path", "label", "prediction"])
+        writer.writerows(preds)
+
+    print(f"Saved test results → {csv_path}")
+
+
+# -----------------------
+# Parse args
+# -----------------------
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--fake_root", type=str, required=True,
+                        help="Path to 1_fake folder")
+
+    parser.add_argument("--real_root", type=str, required=True,
+                        help="Path to 0_real folder")
+
+    parser.add_argument("--model_path", type=str, required=True,
+                        help="Path to best_model.pth")
+
+    parser.add_argument("--meanstd_dir", type=str, required=True,
+                        help="Folder containing means.pt and stds.pt")
+
+    parser.add_argument("--input_size", type=int, default=1024)
+
+    parser.add_argument("--out_csv", type=str, default="test_results.csv")
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    run_test(args)

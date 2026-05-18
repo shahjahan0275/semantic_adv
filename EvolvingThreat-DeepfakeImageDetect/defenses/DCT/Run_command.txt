@@ -1,0 +1,109 @@
+# Training
+cd DCT
+python train.py <path to train images> --input_size 512 --epochs 10 --lr 1e-2 --weight_decay 1e-3
+
+/media/shah/SSD990PRO/RA_CV/diffusion_model_deepfake_detection/data/diffusion_model_deepfakes_lsun_bedroom/train
+
+/media/shah/SSD990PRO/RA_CV/diffusion_model_deepfake_detection/data/
+└── diffusion_model_deepfakes_lsun_bedroom/
+    └── train/
+        ├── ADM/
+        │   └── 1_fake/
+        ├── DDPM/
+        │   └── 1_fake/
+        ├── Diff-ProjectedGAN/
+        │   └── 1_fake/
+        ├── Diff-StyleGAN2/
+        │   └── 1_fake/
+        ├── IDDPM/
+        │   └── 1_fake/
+        ├── LDM/
+        │   └── 1_fake/
+        ├── PNDM/
+        │   └── 1_fake/
+        ├── ProGAN/
+        │   └── 1_fake/
+        ├── ProjectedGAN/
+        │   └── 1_fake/
+        └── StyleGAN/
+            └── 1_fake/
+/media/shah/SSD990PRO/RA_CV/diffusion_model_deepfake_detection/data/diffusion_model_deepfakes_lsun_bedroom/
+├── train/
+│   ├── 0_real/
+│   │   ├── real_00001.png
+│   │   ├── real_00002.png
+│   │   └── ...
+│   ├── ADM/
+│   │   └── 1_fake/
+│   ├── DDPM/
+│   │   └── 1_fake/
+│   ├── Diff-ProjectedGAN/
+│   │   └── 1_fake/
+│   └── ...
+└── val/
+    ├── 0_real/
+    ├── ADM/
+    │   └── 1_fake/
+    ├── DDPM/
+    │   └── 1_fake/
+    └── ...
+
+python train_exp.py /media/shah/SSD990PRO/RA_CV/diffusion_model_deepfake_detection/data/diffusion_model_deepfakes_lsun_bedroom \
+  --input_size 512 \
+  --epochs 10 \
+  --lr 1e-2 \
+  --weight_decay 1e-3 \
+  --batch_size 64 \
+  --save_dir /media/shah/SSD990PRO/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+  
+ python train_exp.py /media/shah/SSD990PRO/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset \
+  --input_size 1024 \
+  --epochs 10 \
+  --lr 1e-2 \
+  --weight_decay 1e-3 \
+  --batch_size 64 \
+  --save_dir /media/shah/SSD990PRO/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+  
+python train_exp.py /media/shah/SSD990PRO/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset \
+  --epochs 10 \
+  --lr 1e-3 \
+  --weight_decay 1e-3 \
+  --batch_size 64 \
+  --freq_keep 128 \
+  --merge_mode concat \
+  --save_dir /media/shah/SSD990PRO/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+
+  
+ python train_exp.py /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset \
+  --input_size 1024 \
+  --epochs 15 \
+  --lr 1e-2 \
+  --weight_decay 1e-3 \
+  --save_dir /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+  
+ python train_exp_DS.py /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/Midjourney \
+  --input_size 1024 \
+  --epochs 30 \
+  --lr 1e-2 \
+  --weight_decay 1e-3 \
+  --save_dir /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+
+ python train_exp_DS.py /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset \
+  --input_size 512 \
+  --epochs 15 \
+  --lr 1e-2 \
+  --weight_decay 1e-3 \
+  --save_dir /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+ 
+  
+python test.py --fake_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset/test/1_fake --real_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/StyleCLIP_dataset/test/0_real --model_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/best_model.pth --path_to_mean_std /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints 
+
+#############Adversarial###################
+python test.py --fake_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/Test_data_Adv/Oakland_surrogate_StyleCLIP_dataset/surrogate_StyleCLIP_dataset/1_fake --real_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/Test_data_Adv/Oakland_surrogate_StyleCLIP_dataset/surrogate_StyleCLIP_dataset/0_real --model_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/best_model_Mj.pth --path_to_mean_std /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+
+
+python test.py --fake_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/Test_data_Adv/Oakland_AdvtrainedCLIPResNet/advV2_2000/1_fake --real_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/Test_data_Adv/Oakland_AdvtrainedCLIPResNet/advV2_2000/0_real --model_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/best_model_Mj.pth --path_to_mean_std /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+
+#RAID
+python tset_DS.py --fake_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/Test_data_Adv/RAID_epsilon32_gen3/RAID/1_fake --real_root /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/Test_data_Adv/RAID_epsilon32_gen3/RAID/0_real --model_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/best_model_DS.pth --path_to_mean_std /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints
+
