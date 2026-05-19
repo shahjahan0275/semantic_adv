@@ -21,7 +21,7 @@ Please update these paths according to your local system or computing environmen
 ### Network Architecture
 
 <div align="center">
-  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/D3.png?raw=true" width="75%">
+  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/Architecture.png?raw=true" width="100%">
 </div>
 
 
