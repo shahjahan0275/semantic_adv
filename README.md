@@ -89,7 +89,8 @@ python -c "import torch; print(torch.__version__)"
 
 ### Training_Command
 1. Only with StyleCLIP Dataset (Sifat2024evolvingthreat)
-python train_3branch_FOS.py \
+   
+python train_3branch_FOS_F.py \
   --name train_d3B_FO4_DCT_StyleCLIP_ReRUN \
   --train_samples 16000 \
   --arch CLIP:ViT-L/14 \
@@ -102,9 +103,8 @@ python train_3branch_FOS.py \
   2>&1 | tee logs/train_$(date +%F_%H-%M).log
 
 2. StyleCLIP Dataset (Sifat2024evolvingthreat) and Genimage(Zhu2024genimage)
-
-#python train_3branch_FOS_F.py \
-python train_3branch_FOS.py \
+   
+python train_3branch_FOS_F.py \
   --name train_d3B_FO4_DCT_StyleCLIP_genimage_ReRUN \
   --train_samples 36000 \
   --arch CLIP:ViT-L/14 \
