@@ -206,6 +206,15 @@ python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImag
 python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/ --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/CNN-F/checkpoints/DCT_ResNet50_LM12/model_epoch_latest.pth
 
 ## Resynthesis_Improved
+### Network Architecture
+
+<div align="center">
+  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/Re-Synthesis.png?raw=true" width="100%">
+</div>
+
+
+The PyTorch implementation for Improved Resynthesis
+
 Training_Command in the cluster environment with "sbatch". You can modify the command to use as per your hardware requirement.
 ####################  Resynthesis_styleclip.sh  DCT Fourth-Order Statistics #############################
 #!/bin/bash
@@ -303,6 +312,14 @@ python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/Evolvin
 python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/1_fake --real_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/MidStyleCLIPjourney_train/StyleCLIP_dataset/test/0_real --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP/best_model_MjStyle.pth --meanstd_dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP --out_csv /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/result/ViT_StyleCLIP_TO.csv
 
 ## DE-FAKE_Improved
+### Network Architecture
+
+<div align="center">
+  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/de-fake.png?raw=true" width="100%">
+</div>
+
+
+The PyTorch implementation for Improved DE-FAKE
 ### Training_Command
 python train_FOS_3BDCT_patch_text.py --epoch 200 --lr 5e-5 --inputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/checkpoints/clip_linear.pt --inputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/checkpoints/finetune_clip.pt --outputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_linear_finetuned.pt --outputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_clip_finetuned.pt
 
@@ -310,6 +327,14 @@ python train_FOS_3BDCT_patch_text.py --epoch 200 --lr 5e-5 --inputpath_linear /s
 python test_FOS_3BDCT_patch_text.py --outputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_clip_finetuned.pt --outputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_linear_finetuned.pt
 
 ## Patch-Forensics_Improved
+### Network Architecture
+
+<div align="center">
+  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/patch-forensics.png?raw=true" width="100%">
+</div>
+
+
+The PyTorch implementation for Improved Patch-Forensics
 For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or four training /test images as an example or place holder.
 ### Training_Command
 
