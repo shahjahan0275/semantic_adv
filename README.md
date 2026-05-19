@@ -331,6 +331,10 @@ python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset
 
 python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset_name ViT --real_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/real/test --fake_im_path /media/shah/0b0b01fc-f078-428d-9fef-a7011b6dbd96/RA_CV/EvolvingThreat-DeepfakeImageDetect/defenses/Patch-Forensics/mydataset/fake/test --train_config checkpoints/gp2-faceforensics-df_seed0_xception_block2_constant_p20_V1/opt.yml
 
+## Evaluating Our Pre-trained Models
+
+The pre-trained models can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1CCixsANcVFWiLvUMJtuPXcK2y5NUJHws). Put them in the respective directory.
+
 ## References
 
 [1] Yang, Yongqi, et al.
