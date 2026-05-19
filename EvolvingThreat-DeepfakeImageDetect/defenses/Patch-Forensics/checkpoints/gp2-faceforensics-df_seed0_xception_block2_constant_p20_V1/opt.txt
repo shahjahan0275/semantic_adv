@@ -1,0 +1,41 @@
+----------------- Options ---------------
+              all_augment: False                         
+               batch_size: 32                            
+                    beta1: 0.9                           
+          checkpoints_dir: ./checkpoints                 
+    cnn_detection_augment: None                          
+            color_augment: False                         
+             display_freq: 1000                          
+            fake_class_id: 0                             
+             fake_im_path: dataset/faces/faceforensics_aligned/Deepfakes/manipulated	[default: None]
+                 fineSize: 299                           
+                  gpu_ids: [0]                           	[default: 0]
+                     help: None                          	[default: ==SUPPRESS==]
+                init_type: xavier                        
+                  isTrain: True                          	[default: None]
+                 loadSize: 299                           	[default: 333]
+               load_model: False                         
+                       lr: 0.001                         
+                lr_policy: constant                      
+         max_dataset_size: inf                           
+               max_epochs: 1000                          	[default: None]
+                    model: patch_discriminator           	[default: basic_discriminator]
+                 nThreads: 4                             
+                     name: gp2-faceforensics-df_seed0_xception_block2_constant_p20	[default: ]
+                  no_flip: False                         
+        no_serial_batches: False                         
+         overwrite_config: False                         
+                 patience: 20                            	[default: 10]
+                   prefix:                               
+               print_freq: 100                           
+              random_crop: False                         
+      random_resized_crop: False                         
+             real_im_path: dataset/faces/faceforensics_aligned/Deepfakes/original	[default: None]
+              results_dir: ./results/                    
+          save_epoch_freq: 200                           	[default: 100]
+         save_latest_freq: 1000                          
+                     seed: 0                             
+                   suffix:                               
+              which_epoch: latest                        
+         which_model_netD: xception_block2               	[default: resnet18]
+----------------- End -------------------
