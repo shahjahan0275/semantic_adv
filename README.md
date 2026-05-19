@@ -205,6 +205,11 @@ python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImag
 
 python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/ --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/CNN-F/checkpoints/DCT_ResNet50_LM12/model_epoch_latest.pth
 
+### To reproduce the Figure 6 run
+
+python plot_tsne.py
+python plot_tsne_hybrid_DCTstats.py
+
 ## Resynthesis_Improved
 ### Network Architecture
 
@@ -286,6 +291,10 @@ python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/
 python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/EfficientNet/0_real" --data-root-neg "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/EfficientNet/1_fake" --input-channel 512 --resume "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100.pth.tar" --sr-weights-file "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100_sr.pth.tar" --save_path "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/results" --no_dilation --sr-scale 4 --sr-num-features 64 --sr-growth-rate 64 --sr-num-blocks 16 --sr-num-layers 8 --idx-stages 5
 
 python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/0_real" --data-root-neg "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/1_fake" --input-channel 512 --resume "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100.pth.tar" --sr-weights-file "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/saved_model_DCTFO/0100_sr.pth.tar" --save_path "/speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/Resynthesis/results" --no_dilation --sr-scale 4 --sr-num-features 64 --sr-growth-rate 64 --sr-num-blocks 16 --sr-num-layers 8 --idx-stages 5
+
+### To reproduce the Figure 5 run 
+
+python plot_tsne.py
 
 ## DCT_Improved
 For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or 4 training /test images as an example or place holder.
