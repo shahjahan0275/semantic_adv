@@ -21,7 +21,7 @@ Please update these paths according to your local system or computing environmen
 ### Network Architecture
 
 <div align="center">
-  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/D3.png?raw=true" width="100%">
+  <img src="https://github.com/shahjahan0275/semantic_adv/blob/main/demo/D3.png?raw=true" width="75%">
 </div>
 
 
@@ -335,7 +335,7 @@ python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset
 
 The pre-trained models can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1CCixsANcVFWiLvUMJtuPXcK2y5NUJHws). Put them in the respective directory.
 
-# Acknowledgement
+## Acknowledgement
 
 Our code makes references to the following repositories.
 - [D3](https://github.com/BigAandSmallq/D3).
