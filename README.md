@@ -79,7 +79,7 @@ Then install dependencies:
 pip install -r requirements.txt
 ```
 
-## Verify Installation
+### Verify Installation
 
 ```bash
 python -c "import torch; print(torch.__version__)"
@@ -87,7 +87,7 @@ python -c "import torch; print(torch.__version__)"
 
 
 
-# Training_Command
+### Training_Command
 1. Only with StyleCLIP Dataset (Sifat2024evolvingthreat)
 python train_3branch_FOS.py \
   --name train_d3B_FO4_DCT_StyleCLIP_ReRUN \
@@ -116,7 +116,7 @@ python train_3branch_FOS.py \
   --patch_size 14 \
   2>&1 | tee logs/train_$(date +%F_%H-%M).log
 
-# Inference_Command
+### Inference_Command
 python validate_for_robustness_spd.py
 
 ## Reproducing Table 4 Results
