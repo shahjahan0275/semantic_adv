@@ -335,6 +335,20 @@ python3 test_dct.py --gpu_ids 0 --which_epoch bestval --partition test --dataset
 
 The pre-trained models can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1CCixsANcVFWiLvUMJtuPXcK2y5NUJHws). Put them in the respective directory.
 
+# Acknowledgement
+
+Our code makes references to the following repositories.
+- [D3](https://github.com/BigAandSmallq/D3).
+- [EvolvingThreat](https://github.com/secml-lab-vt/EvolvingThreat-DeepfakeImageDetect).
+- [GenImage](https://github.com/GenImage-Dataset/GenImage).
+- [patch-forensics](https://github.com/chail/patch-forensics).
+- [CNN-F](https://github.com/PeterWang512/CNNDetection).
+- [De-Fake](https://github.com/zeyangsha/De-Fake).
+- [DCT](https://github.com/jonasricker/diffusion-model-deepfake-detection).
+- [Resynthesis](https://github.com/SSAW14/BeyondtheSpectrum).
+
+We thank the authors for sharing their code and kindly request that you also acknowledge their contributions by citing their work.
+
 ## References
 
 [1] Yang, Yongqi, et al.
