@@ -137,7 +137,7 @@ Some dataset paths and checkpoint paths in our code may still reflect the origin
 
 ## Environment Setup
 
-This project was tested with:
+The following improved detectors by us CNN-F,Resynthesis,DCT,DE-FAKE and  Patch-Forensics were tested with:
 
 - Python 3.8
 - PyTorch 1.12.1
@@ -192,7 +192,7 @@ True
 ```
 
 
-## CNN-F_Improved
+## CNN-F
 ### Training_Command
 python train_dctstats.py --name DCT_ResNet50_LM12 \
 --blur_prob 0.1 --blur_sig 0.0,3.0 \
@@ -212,7 +212,7 @@ python infer_dct_LM1.py --dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImag
 python plot_tsne.py
 python plot_tsne_hybrid_DCTstats.py
 
-## Resynthesis_Improved
+## Resynthesis
 ### Network Architecture
 
 <div align="center">
@@ -298,7 +298,7 @@ python infer_dct.py -a resnet50 --gpu 0 --data-root-pos "/speed-scratch/a_shahj/
 
 python plot_tsne.py
 
-## DCT_Improved
+## DCT
 For Training like ours please use the "StyleCLIP dataset" of Abdullah et al.~\cite{Sifat2024evolvingthreat}. Download the dataset and place it in the right folder. Due to the space limitations we can't upload the data in our repository, we just kept 3 or 4 training /test images as an example or place holder.
 ### Training_Command
 python train_exp_DS_GI_Frequency_FO_batch.py \
@@ -322,7 +322,7 @@ python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/Evolvin
 
 python test_exp_DS_GI_Frequency_FO.py --fake_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/AdvImages_w_SurrogateModels/ViT/1_fake --real_root /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/data/MidStyleCLIPjourney_train/StyleCLIP_dataset/test/0_real --model_path /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP/best_model_MjStyle.pth --meanstd_dir /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/checkpoints/exp_DS_GI_DCTFO_StyleCLIP --out_csv /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DCT/result/ViT_StyleCLIP_TO.csv
 
-## DE-FAKE_Improved
+## DE-FAKE
 ### Network Architecture
 
 <div align="center">
@@ -337,7 +337,7 @@ python train_FOS_3BDCT_patch_text.py --epoch 200 --lr 5e-5 --inputpath_linear /s
 ### Inference_Command
 python test_FOS_3BDCT_patch_text.py --outputpath_clip /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_clip_finetuned.pt --outputpath_linear /speed-scratch/a_shahj/EvolvingThreat-DeepfakeImageDetect/defenses/DE-FAKE/ckpt_caption_FOS_DCT_patch_text/StyleCLIP_linear_finetuned.pt
 
-## Patch-Forensics_Improved
+## Patch-Forensics
 ### Network Architecture
 
 <div align="center">
