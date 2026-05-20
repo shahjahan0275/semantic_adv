@@ -16,6 +16,8 @@ The codebase was developed and evaluated across multiple HPC clusters and local 
 
 Please update these paths according to your local system or computing environment before running the code.
 
+### Important Note About sample data
+we have uploaded a few samples in the folder "sample_data", which could be used to run the code but not enough to reproduce our result . All the data that we used in our work could be downloaded from the original author's repository as described in the paper.
 
 ## D3_Improved
 ### Network Architecture
@@ -52,7 +54,7 @@ D3: Scaling Up Deepfake Detection by Learning from Discrepancy (CVPR 2025)
 
 ##### Reproducing Table 1
 
-To reproduce the results in Table 1 using all the dataset from Abdullah et al. (2024) please follow the setup and instructions provided in the corresponding repositories of the respective detectors evaluated in our paper.
+To reproduce the results in Table 1 using all the dataset from Abdullah et al. (2024) please follow the setup and instructions provided in the corresponding repositories of the respective detectors evaluated in our paper.We have provided code link for all the detectors evaluated in this table in the acknowledgement section of this README page.
 
 
 ## Environment Setup
@@ -380,6 +382,12 @@ Our code makes references to the following repositories.
 - [De-Fake](https://github.com/zeyangsha/De-Fake).
 - [DCT](https://github.com/jonasricker/diffusion-model-deepfake-detection).
 - [Resynthesis](https://github.com/SSAW14/BeyondtheSpectrum).
+- [spai](https://github.com/mever-team/spai).
+- [CO-SPY](https://github.com/Megum1/Co-Spy).
+- [FIRE](https://github.com/Chuchad/FIRE).
+- [ManifoldBias](https://github.com/JonathanBrok/Manifold-Induced-Biases-for-Zero-shot-and-Few-shot-Detection-of-Generated-Images).
+- [Directionality](https://github.com/uibk-uncover/directionality).
+- [Upsampling](https://github.com/chuangchuangtan/NPR-DeepfakeDetection).
 
 We thank the authors for sharing their code and kindly request that you also acknowledge their contributions by citing their work.
 
