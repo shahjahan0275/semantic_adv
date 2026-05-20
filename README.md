@@ -17,7 +17,7 @@ The codebase was developed and evaluated across multiple HPC clusters and local 
 Please update these paths according to your local system or computing environment before running the code.
 
 ### Important Note About sample data
-we have uploaded a few samples in the folder "sample_data", which could be used to run the code but not enough to reproduce our result . All the data that we used in our work could be downloaded from the original author's repository as described in the paper.
+We have uploaded a few samples in the folder "sample_data", which could be used to run the code but not enough to reproduce our result . All the data that we used in our work could be downloaded from the original author's repository as described in the paper.
 
 ## D3_Improved
 ### Network Architecture
