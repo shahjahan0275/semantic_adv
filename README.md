@@ -405,3 +405,8 @@ We thank the authors for sharing their code and kindly request that you also ack
     "GenImage: A Million-Scale Benchmark for Detecting AI-Generated Image."
     Advances in Neural Information Processing Systems (NeurIPS), 2024.
 
+## Artifact DOI
+Permanent archived artifact (Zenodo):
+This repository is actively maintained.
+The official archived artifact corresponding to the USENIX Security 2026 paper is permanently available at:
+https://doi.org/10.5281/zenodo.20327568
