@@ -3,7 +3,7 @@
 This repository contains the official PyTorch implementation of the Robustness of Deepfake  Image Detectors authored by Abu Taib Mohammed Shahjahan, Mohammad Mannan, A. Ben Hamza and Amr Youssef. If you discover our code to be valuable for your research, kindly consider including the following citation:
 
  ```
-@article{shahjahan2026Deepfake,
+@inproceedings{shahjahan2026Deepfake,
    title={On Improving Robustness of Deepfake  Image Detectors},
    author={Shahjahan, Abu Taib Mohammed and Mannan,Mohammad and Hamza, A Ben and Youssef, Amr },
    conference={USENIX Security ‘26},
