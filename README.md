@@ -1,4 +1,6 @@
-# [On Improving Robustness of Deepfake  Image Detectors] [USENIX Security ‘26]
+# On Improving Robustness of Deepfake Image Detectors [USENIX Security '26]
+
+[Paper](https://www.usenix.org/system/files/usenixsecurity26-shahjahan.pdf) | [Artifact Appendix](https://secartifacts.github.io/usenixsec2026/appendix-files/sec26cycle2ae-final83.pdf)
 
 This repository contains the official PyTorch implementation of the Robustness of Deepfake  Image Detectors authored by Abu Taib Mohammed Shahjahan, Mohammad Mannan, A. Ben Hamza and Amr Youssef. If you discover our code to be valuable for your research, kindly consider including the following citation:
 
